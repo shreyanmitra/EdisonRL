@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EdisonRL Grid Builder</title>
+  <link rel="icon" type="image/png" href="./edison-logo.png" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./icons.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <img src="./edison-logo.png" alt="Edison Robot" class="logo-img" />
+        <div>
+          <h1>EdisonRL Grid Builder</h1>
+          <p>Teach your robot how to navigate your world using reinforcement learning</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="card-header">
+        <span class="step-badge"><i class="lucide-layers"></i></span>
+        <h2>Define Square Types</h2>
+        <span class="step-desc"><i class="lucide-info"></i> Set up the rules for each tile</span>
+      </div>
+      <div class="card-body">
+        <div class="types-scroll">
+          <table id="typesTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Reward</th>
+                <th>Terminal</th>
+                <th>Blocked</th>
+                <th>Wait</th>
+                <th>Force Action</th>
+                <th>Color</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <button id="addTypeBtn" class="btn btn-secondary btn-sm"><i class="lucide-plus"></i> Add Type</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <span class="step-badge"><i class="lucide-grid-3x3"></i></span>
+        <h2>Design Your Grid</h2>
+        <span class="step-desc"><i class="lucide-paintbrush"></i> Click cells to paint your world</span>
+      </div>
+      <div class="card-body">
+        <div class="scenario-controls">
+          <div class="control-group">
+            <label><i class="lucide-map"></i> Scenario</label>
+            <div class="scenario-selector">
+              <select id="scenarioSelect"></select>
+              <button id="addScenarioBtn" class="btn btn-secondary btn-sm"><i class="lucide-plus"></i> New</button>
+              <button id="deleteScenarioBtn" class="btn btn-danger btn-sm"><i class="lucide-trash-2"></i> Delete</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <label>Name</label>
+            <input id="scName" type="text" />
+          </div>
+          <div class="control-group">
+            <label>ID Bars</label>
+            <input id="scBars" type="number" min="1" max="7" />
+          </div>
+          <div class="control-row">
+            <div class="control-group">
+              <label>Rows</label>
+              <input id="scRows" type="number" min="1" max="5" />
+            </div>
+            <div class="control-group">
+              <label>Cols</label>
+              <input id="scCols" type="number" min="1" max="5" />
+            </div>
+            <div class="control-group">
+              <label>Start Row</label>
+              <input id="scStartR" type="number" min="0" />
+            </div>
+            <div class="control-group">
+              <label>Start Col</label>
+              <input id="scStartC" type="number" min="0" />
+            </div>
+            <div class="control-group">
+              <label><i class="lucide-compass"></i> Heading</label>
+              <select id="scStartH">
+                <option value="0">North</option>
+                <option value="1">East</option>
+                <option value="2">South</option>
+                <option value="3">West</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-editor">
+          <div class="paint-palette">
+            <label><i class="lucide-palette"></i> Paint Brush</label>
+            <div id="paintSwatches" class="swatches"></div>
+          </div>
+          <div class="grid-area">
+            <div id="gridCanvas" class="grid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <span class="step-badge"><i class="lucide-sliders-horizontal"></i></span>
+        <h2>Tune Hyperparameters</h2>
+        <span class="step-desc"><i class="lucide-brain"></i> Adjust how the robot learns</span>
+      </div>
+      <div class="card-body">
+        <div class="hp-grid">
+          <div class="hp-group">
+            <label for="hpAlpha"><i class="lucide-zap"></i> Learning Speed</label>
+            <input id="hpAlpha" type="number" min="1" max="99" value="22" />
+            <span class="hp-hint">How fast the robot updates its knowledge (0-99, default 22)</span>
+          </div>
+          <div class="hp-group">
+            <label for="hpGamma"><i class="lucide-fast-forward"></i> Future Thinking</label>
+            <input id="hpGamma" type="number" min="1" max="99" value="95" />
+            <span class="hp-hint">How much the robot values future rewards (0-99, default 95)</span>
+          </div>
+          <div class="hp-group">
+            <label for="hpEpsilon"><i class="lucide-shuffle"></i> Curiosity</label>
+            <input id="hpEpsilon" type="number" min="1" max="99" value="28" />
+            <span class="hp-hint">Chance of trying a random move to explore (0-99, default 28)</span>
+          </div>
+          <div class="hp-group">
+            <label for="hpMinEpisodes"><i class="lucide-repeat"></i> Training Rounds</label>
+            <input id="hpMinEpisodes" type="number" min="1" max="99" value="18" />
+            <span class="hp-hint">Exploration episodes before switching to best path (default 18)</span>
+          </div>
+          <div class="hp-group">
+            <label for="hpMaxSteps"><i class="lucide-timer"></i> Step Limit</label>
+            <input id="hpMaxSteps" type="number" min="10" max="250" value="60" />
+            <span class="hp-hint">Max steps per episode before giving up (default 60)</span>
+          </div>
+          <div class="hp-group">
+            <label for="hpTurnDeg"><i class="lucide-rotate-cw"></i> Turn Degrees</label>
+            <input id="hpTurnDeg" type="number" min="80" max="110" value="95" />
+            <span class="hp-hint">Motor degrees for a 90-degree turn (tune for drift, default 95)</span>
+          </div>
+          <div class="hp-group">
+            <label for="hpCellCm"><i class="lucide-ruler"></i> Cell Size (cm)</label>
+            <input id="hpCellCm" type="number" min="5" max="30" value="11" />
+            <span class="hp-hint">Driving distance per grid cell in cm (default 11)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <span class="step-badge"><i class="lucide-rocket"></i></span>
+        <h2>Export &amp; Deploy</h2>
+        <span class="step-desc"><i class="lucide-cpu"></i> Get your code onto the robot</span>
+      </div>
+      <div class="card-body">
+        <div class="action-groups">
+          <div class="action-group">
+            <h3><i class="lucide-file-json"></i> Scenario Data</h3>
+            <div class="btn-row">
+              <button id="exportBtn" class="btn btn-secondary"><i class="lucide-download"></i> Export JSON</button>
+              <label class="btn btn-secondary file-btn">
+                <i class="lucide-upload"></i> Import JSON
+                <input id="importFile" type="file" accept=".json,application/json" hidden />
+              </label>
+            </div>
+          </div>
+          <div class="action-group">
+            <h3><i class="lucide-printer"></i> Printable Maps</h3>
+            <div class="btn-row">
+              <button id="downloadSvgBtn" class="btn btn-secondary"><i class="lucide-image-down"></i> Selected SVG</button>
+              <button id="downloadAllSvgsBtn" class="btn btn-secondary"><i class="lucide-images"></i> All SVGs</button>
+              <button id="downloadCalibBtn" class="btn btn-secondary"><i class="lucide-crosshair"></i> Calibration Strip</button>
+            </div>
+          </div>
+          <div class="action-group">
+            <h3><i class="lucide-code"></i> Edison Code</h3>
+            <div class="btn-row">
+              <button id="compileRuntimeBtn" class="btn btn-primary btn-lg"><i class="lucide-zap"></i> Compile for Edison</button>
+            </div>
+            <div class="btn-row" style="margin-top:8px">
+              <button id="copyRuntimeBtn" class="btn btn-secondary"><i class="lucide-clipboard-copy"></i> Copy Code</button>
+              <button id="downloadRuntimeBtn" class="btn btn-secondary"><i class="lucide-file-down"></i> Download .py</button>
+            </div>
+          </div>
+        </div>
+
+        <details id="advancedSection">
+          <summary><i class="lucide-settings"></i> Advanced: manual runtime template</summary>
+          <div class="advanced-inner">
+            <div class="btn-row">
+              <button id="refreshRuntimeBtn" class="btn btn-secondary btn-sm"><i class="lucide-refresh-cw"></i> Reload Runtime</button>
+              <label class="btn btn-secondary btn-sm file-btn">
+                <i class="lucide-file-up"></i> Upload EdisonRL.py
+                <input id="runtimeFile" type="file" accept=".py,text/x-python" hidden />
+              </label>
+            </div>
+            <label>Runtime template (input)</label>
+            <textarea id="runtimeInput" rows="6" class="code-area"></textarea>
+          </div>
+        </details>
+
+        <label><i class="lucide-terminal"></i> Compiled output</label>
+        <textarea id="runtimeOutput" rows="8" class="code-area"></textarea>
+      </div>
+    </section>
+  </main>
+
+  <div id="statusToast" class="toast" aria-live="polite"></div>
+
+  <footer>
+    <p><i class="lucide-copyright"></i> Shreyan Mitra, 2024-2026. Built with EdisonRL.</p>
+    <p class="disclaimer">Edison and EdPy are developed by Microbric Pty Ltd, which does not support or endorse this project.</p>
+  </footer>
+
+  <script src="./bundled-runtime.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

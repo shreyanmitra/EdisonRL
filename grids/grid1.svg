@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="660mm" height="590mm" viewBox="0 0 660 590">
+  <title>EdisonRL Grid 1 - Desert Quest (ID: one bar)</title>
+  <defs>
+    <linearGradient id="desertSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff8e1"/>
+      <stop offset="100%" stop-color="#ffe0a0"/>
+    </linearGradient>
+    <marker id="startArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#15803d"/>
+    </marker>
+  </defs>
+  <rect width="660" height="590" fill="url(#desertSky)"/>
+
+  <!-- Sand dunes background -->
+  <path d="M0 490 C120 450 240 535 360 490 C460 448 540 525 660 480 L660 590 L0 590 Z" fill="#f2c883" opacity="0.5"/>
+  <path d="M0 520 C140 472 260 555 380 520 C500 474 560 560 660 518 L660 590 L0 590 Z" fill="#e8b86e" opacity="0.5"/>
+
+  <!-- Title -->
+  <text x="22" y="22" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#5a3d12">Desert Quest - Grid 1</text>
+  <text x="22" y="36" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#7a5a28">Print at 100% scale. Cell = 110 mm. 4 rows x 5 cols. Use poster or tiled print.</text>
+
+  <!-- Instruction panel -->
+  <rect x="22" y="44" width="616" height="42" rx="8" fill="#fffdf5" stroke="#c49a3a" stroke-width="1"/>
+  <text x="56" y="60" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="bold" fill="#5a3d12">STEP 1</text>
+  <text x="56" y="72" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#7a5a28">Place Edison line sensor on green circle, face North.</text>
+  <circle cx="38" cy="65" r="10" fill="#22c55e" stroke="#15803d" stroke-width="0.8"/>
+  <circle cx="38" cy="65" r="3.5" fill="#f0fdf4" stroke="#15803d" stroke-width="0.5"/>
+  <text x="480" y="60" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="bold" fill="#5a3d12">STEP 2</text>
+  <text x="480" y="72" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#7a5a28">Scan 1 bar:</text>
+  <rect x="552" y="52" width="4" height="24" rx="1" fill="#111827"/>
+
+  <!-- Cut guide -->
+  <rect x="48" y="95" width="562" height="452" rx="4" fill="none" stroke="#94a3b8" stroke-width="0.6" stroke-dasharray="6 3"/>
+
+  <!-- Column numbers -->
+  <text x="106" y="95" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="#8a6a34" text-anchor="middle" font-weight="bold">0</text>
+  <text x="216" y="95" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="#8a6a34" text-anchor="middle" font-weight="bold">1</text>
+  <text x="326" y="95" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="#8a6a34" text-anchor="middle" font-weight="bold">2</text>
+  <text x="436" y="95" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="#8a6a34" text-anchor="middle" font-weight="bold">3</text>
+  <text x="546" y="95" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="#8a6a34" text-anchor="middle" font-weight="bold">4</text>
+
+  <!-- Row numbers -->
+  <text x="44" y="160" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="#8a6a34" text-anchor="middle" font-weight="bold">0</text>
+  <text x="44" y="270" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="#8a6a34" text-anchor="middle" font-weight="bold">1</text>
+  <text x="44" y="380" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="#8a6a34" text-anchor="middle" font-weight="bold">2</text>
+  <text x="44" y="490" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="#8a6a34" text-anchor="middle" font-weight="bold">3</text>
+
+  <g transform="translate(51,100)">
+    <!-- Grid background -->
+    <rect x="-2" y="-2" width="554" height="444" rx="4" fill="#fff8e9" stroke="#8a6a34" stroke-width="1.2"/>
+    <g stroke="#c4a468" stroke-width="0.8" fill="#fffef9">
+      <rect x="0" y="0" width="550" height="440"/>
+      <line x1="110" y1="0" x2="110" y2="440"/>
+      <line x1="220" y1="0" x2="220" y2="440"/>
+      <line x1="330" y1="0" x2="330" y2="440"/>
+      <line x1="440" y1="0" x2="440" y2="440"/>
+      <line x1="0" y1="110" x2="550" y2="110"/>
+      <line x1="0" y1="220" x2="550" y2="220"/>
+      <line x1="0" y1="330" x2="550" y2="330"/>
+    </g>
+
+    <!-- Start cell (row 3, col 0) -->
+    <rect x="3" y="333" width="104" height="104" rx="6" fill="#cbf4db" fill-opacity="0.6" stroke="#22995d" stroke-width="1.5"/>
+    <circle cx="55" cy="385" r="20" fill="#22c55e" fill-opacity="0.25" stroke="#15803d" stroke-width="1"/>
+    <circle cx="55" cy="385" r="12" fill="#22c55e" stroke="#15803d" stroke-width="1.2"/>
+    <circle cx="55" cy="385" r="4" fill="#f0fdf4" stroke="#15803d" stroke-width="0.6"/>
+    <!-- North arrow -->
+    <line x1="55" y1="385" x2="55" y2="355" stroke="#15803d" stroke-width="2" stroke-linecap="round" marker-end="url(#startArrow)"/>
+    <text x="55" y="350" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="bold" fill="#14573a" text-anchor="middle">START</text>
+
+    <!-- Invalid (row 1, col 2) ? sinkhole -->
+    <rect x="223" y="113" width="104" height="104" rx="6" fill="#d9d2c6" stroke="#7e725f" stroke-width="1.2"/>
+    <ellipse cx="275" cy="165" rx="34" ry="22" fill="#5a4632"/>
+    <ellipse cx="275" cy="165" rx="22" ry="13" fill="#302318"/>
+    <text x="275" y="200" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="bold" fill="#5c4b36" text-anchor="middle">PIT</text>
+
+    <!-- Lava (row 2, col 2) -->
+    <rect x="223" y="223" width="104" height="104" rx="6" fill="#ffb8a8" stroke="#b93e2d" stroke-width="1.2"/>
+    <path d="M234 318 L248 292 L260 315 L275 282 L288 313 L303 286 L316 318" fill="none" stroke="#ff5a24" stroke-width="5" stroke-linecap="round"/>
+    <path d="M238 320 L252 300 L266 320 L280 295 L294 320 L308 298 L322 320" fill="none" stroke="#ffdd40" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="275" y="260" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#8f241a" text-anchor="middle">LAVA</text>
+
+    <!-- Goal (row 3, col 4) ? pot of gold -->
+    <rect x="443" y="333" width="104" height="104" rx="6" fill="#ffe69a" stroke="#c89b1f" stroke-width="1.2"/>
+    <ellipse cx="495" cy="400" rx="24" ry="13" fill="#5f4122"/>
+    <rect x="473" y="383" width="44" height="20" rx="4" fill="#7a542d"/>
+    <circle cx="482" cy="380" r="5" fill="#ffd84a"/>
+    <circle cx="493" cy="377" r="5" fill="#ffd84a"/>
+    <circle cx="505" cy="380" r="5" fill="#ffd84a"/>
+    <text x="495" y="368" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#7b5800" text-anchor="middle">GOAL</text>
+  </g>
+
+  <!-- River overlay (flows through cols 3-4 of the grid, root coords x?430..560) -->
+  <path d="M500 110 C460 190 530 260 480 340 C440 410 510 490 470 535" fill="none" stroke="#55adef" stroke-width="28" stroke-linecap="round" opacity="0.35"/>
+  <path d="M500 110 C460 190 530 260 480 340 C440 410 510 490 470 535" fill="none" stroke="#9ad8ff" stroke-width="14" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Boxed legend -->
+  <rect x="22" y="554" width="400" height="28" rx="6" fill="#fffdf5" stroke="#c4a468" stroke-width="0.7"/>
+  <text x="30" y="564" font-family="Arial,Helvetica,sans-serif" font-size="6" font-weight="bold" fill="#5a3d12">LEGEND:</text>
+  <rect x="72" y="557" width="10" height="10" rx="2" fill="#fffef9" stroke="#c4a468" stroke-width="0.5"/>
+  <text x="86" y="565" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Empty</text>
+  <rect x="112" y="557" width="10" height="10" rx="2" fill="#ffe69a" stroke="#c89b1f" stroke-width="0.5"/>
+  <text x="126" y="565" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Goal</text>
+  <rect x="148" y="557" width="10" height="10" rx="2" fill="#ffb8a8" stroke="#b93e2d" stroke-width="0.5"/>
+  <text x="162" y="565" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Lava</text>
+  <rect x="186" y="557" width="10" height="10" rx="2" fill="#d9d2c6" stroke="#7e725f" stroke-width="0.5"/>
+  <text x="200" y="565" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Invalid (Pit)</text>
+  <rect x="258" y="557" width="10" height="10" rx="2" fill="#cbf4db" stroke="#22995d" stroke-width="0.5"/>
+  <text x="272" y="565" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Start</text>
+  <text x="308" y="572" font-family="Arial,Helvetica,sans-serif" font-size="5" fill="#94a3b8">Arrow = heading direction</text>
+
+  <text x="638" y="580" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#94a3b8">Copyright (C) Shreyan Mitra, 2024-2026.</text>
+</svg>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 420 297">
+  <title>EdisonRL Calibration Test Strip</title>
+  <defs>
+    <linearGradient id="calBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#faf6ee"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="420" height="297" fill="url(#calBg)"/>
+
+  <!-- Title -->
+  <text x="12" y="14" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="bold" fill="#1a2e50">EdisonRL Calibration Test Strip</text>
+  <text x="12" y="22" font-family="Arial,Helvetica,sans-serif" font-size="5" fill="#4a5e80">Print at 100% scale. Use poster/tiled mode if your printer cannot handle this size.</text>
+  <text x="12" y="28.5" font-family="Arial,Helvetica,sans-serif" font-size="5" fill="#4a5e80">Target values: CELL_CM = 11, TURN_DEG near 95. Tune until robot motion matches guides below.</text>
+
+  <!-- Section 1: cell-size check -->
+  <rect x="12" y="36" width="130" height="128" rx="6" fill="#ffffff" stroke="#6b8cc4" stroke-width="0.7"/>
+  <rect x="12" y="36" width="130" height="14" rx="6" fill="#e8f0fb"/>
+  <text x="18" y="46" font-family="Arial,Helvetica,sans-serif" font-size="6" font-weight="bold" fill="#1a2e50">1. Cell Size Check (110 mm)</text>
+  <rect x="22" y="56" width="110" height="110" rx="2" fill="#f0f7ff" stroke="#2e4f8e" stroke-width="1"/>
+  <circle cx="77" cy="111" r="14" fill="#22c55e" stroke="#15803d" stroke-width="1"/>
+  <circle cx="77" cy="111" r="4.5" fill="#f0fdf4" stroke="#15803d" stroke-width="0.6"/>
+  <text x="77" y="152" font-family="Arial,Helvetica,sans-serif" font-size="4.5" fill="#2e4f8e" text-anchor="middle">Square edge = 110 mm</text>
+
+  <!-- Section 2: forward distance strip -->
+  <rect x="150" y="36" width="130" height="128" rx="6" fill="#ffffff" stroke="#6b8cc4" stroke-width="0.7"/>
+  <rect x="150" y="36" width="130" height="14" rx="6" fill="#e8f0fb"/>
+  <text x="156" y="46" font-family="Arial,Helvetica,sans-serif" font-size="6" font-weight="bold" fill="#1a2e50">2. Forward 11 cm Test</text>
+  <rect x="160" y="80" width="110" height="20" rx="3" fill="#f0f7ff" stroke="#2e4f8e" stroke-width="1"/>
+  <line x1="160" y1="76" x2="160" y2="104" stroke="#2e4f8e" stroke-width="1.5"/>
+  <line x1="270" y1="76" x2="270" y2="104" stroke="#2e4f8e" stroke-width="1.5"/>
+  <text x="162" y="76" font-family="Arial,Helvetica,sans-serif" font-size="4.5" fill="#2e4f8e">START</text>
+  <text x="248" y="76" font-family="Arial,Helvetica,sans-serif" font-size="4.5" fill="#2e4f8e">+11 cm</text>
+  <text x="156" y="114" font-family="Arial,Helvetica,sans-serif" font-size="4.5" fill="#4a5e80">Run: Ed.Drive(FWD, SPEED_5,</text>
+  <text x="156" y="120" font-family="Arial,Helvetica,sans-serif" font-size="4.5" fill="#4a5e80">CELL_CM)</text>
+  <text x="156" y="130" font-family="Arial,Helvetica,sans-serif" font-size="4.2" fill="#6b8cc4">Center should move from left to right tick.</text>
+
+  <!-- Section 3: turn test -->
+  <rect x="288" y="36" width="120" height="128" rx="6" fill="#ffffff" stroke="#6b8cc4" stroke-width="0.7"/>
+  <rect x="288" y="36" width="120" height="14" rx="6" fill="#e8f0fb"/>
+  <text x="294" y="46" font-family="Arial,Helvetica,sans-serif" font-size="6" font-weight="bold" fill="#1a2e50">3. 90-Degree Turn Test</text>
+  <line x1="310" y1="120" x2="310" y2="62" stroke="#2e4f8e" stroke-width="2"/>
+  <line x1="310" y1="120" x2="368" y2="120" stroke="#2e4f8e" stroke-width="2"/>
+  <polygon points="310,62 306,68 314,68" fill="#2e4f8e"/>
+  <polygon points="368,120 362,116 362,124" fill="#2e4f8e"/>
+  <text x="316" y="70" font-family="Arial,Helvetica,sans-serif" font-size="4.5" fill="#2e4f8e">Before</text>
+  <text x="316" y="116" font-family="Arial,Helvetica,sans-serif" font-size="4.5" fill="#2e4f8e">After SPIN_RIGHT</text>
+  <text x="294" y="140" font-family="Arial,Helvetica,sans-serif" font-size="4.2" fill="#6b8cc4">Tune TURN_DEG until quarter-turn</text>
+  <text x="294" y="146" font-family="Arial,Helvetica,sans-serif" font-size="4.2" fill="#6b8cc4">is accurate.</text>
+
+  <!-- Section 4: ID strip scan check -->
+  <rect x="12" y="174" width="396" height="64" rx="6" fill="#ffffff" stroke="#6b8cc4" stroke-width="0.7"/>
+  <rect x="12" y="174" width="396" height="14" rx="6" fill="#e8f0fb"/>
+  <text x="18" y="184" font-family="Arial,Helvetica,sans-serif" font-size="6" font-weight="bold" fill="#1a2e50">4. Grid-ID Scan Timing Check</text>
+  <text x="18" y="196" font-family="Arial,Helvetica,sans-serif" font-size="4.8" fill="#4a5e80">Use this strip to tune GRID_ID_READING_TIME and SPEED so robot counts bars reliably.</text>
+  <circle cx="36" cy="214" r="11" fill="#22c55e" stroke="#15803d" stroke-width="1"/>
+  <circle cx="36" cy="214" r="4" fill="#f0fdf4" stroke="#15803d" stroke-width="0.6"/>
+  <text x="26" y="230" font-family="Arial,Helvetica,sans-serif" font-size="4.5" fill="#2e4f8e">Start pad</text>
+  <rect x="98" y="202" width="3.5" height="24" rx="1" fill="#111827"/>
+  <text x="90" y="232" font-family="Arial,Helvetica,sans-serif" font-size="4.5" fill="#2e4f8e">1 bar</text>
+  <rect x="152" y="202" width="3.5" height="24" rx="1" fill="#111827"/>
+  <rect x="164" y="202" width="3.5" height="24" rx="1" fill="#111827"/>
+  <text x="148" y="232" font-family="Arial,Helvetica,sans-serif" font-size="4.5" fill="#2e4f8e">2 bars</text>
+  <rect x="220" y="202" width="3.5" height="24" rx="1" fill="#111827"/>
+  <rect x="232" y="202" width="3.5" height="24" rx="1" fill="#111827"/>
+  <rect x="244" y="202" width="3.5" height="24" rx="1" fill="#111827"/>
+  <text x="218" y="232" font-family="Arial,Helvetica,sans-serif" font-size="4.5" fill="#2e4f8e">3 bars</text>
+
+  <text x="12" y="290" font-family="Arial,Helvetica,sans-serif" font-size="5" fill="#94a3b8">Copyright (C) Shreyan Mitra, 2024-2026.</text>
+</svg>
