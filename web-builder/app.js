@@ -358,6 +358,7 @@ function buildScenarioSvg(squareTypes, scenario) {
   var top = 96;
   var gridW = cols * cell;
   var gridH = rows * cell;
+  var stripH = 80;
 
   var usedTypes = new Set();
   for (var ri = 0; ri < rows; ri++)
@@ -367,7 +368,7 @@ function buildScenarioSvg(squareTypes, scenario) {
   var legendH = Math.max(0, legendTypes.length * 14 + 20);
 
   var width = Math.max(420, left + gridW + 30);
-  var height = Math.max(320, top + gridH + numW + 14 + legendH + 30);
+  var height = Math.max(320, top + gridH + stripH + numW + 14 + legendH + 30);
 
   var colors = typeColorMap(squareTypes);
   var typeNames = new Map(squareTypes.map(function (t) { return [Number(t.id), String(t.name)]; }));
@@ -391,18 +392,13 @@ function buildScenarioSvg(squareTypes, scenario) {
 
   L.push('  <rect x="14" y="38" width="' + (width - 28) + '" height="38" rx="6" fill="#ffffff" stroke="#6b8cc4" stroke-width="0.7"/>');
   L.push('  <text x="52" y="52" font-family="' + font + '" font-size="6" font-weight="bold" fill="#2b4976">STEP 1</text>');
-  L.push('  <text x="52" y="62" font-family="' + font + '" font-size="5.5" fill="#4a5e80">Place Edison line sensor on green circle, facing up.</text>');
+  L.push('  <text x="52" y="62" font-family="' + font + '" font-size="5.5" fill="#4a5e80">Place Edison on the green start circle below the grid, facing toward the top of the page.</text>');
   L.push('  <circle cx="32" cy="57" r="10" fill="#22c55e" stroke="#15803d" stroke-width="0.8"/>');
   L.push('  <circle cx="32" cy="57" r="3.5" fill="#f0fdf4" stroke="#15803d" stroke-width="0.5"/>');
 
-  var barBlockX = width - 28 - bars * 11 - 46;
-  L.push('  <text x="' + (barBlockX - 2) + '" y="52" font-family="' + font + '" font-size="6" font-weight="bold" fill="#2b4976">STEP 2</text>');
-  L.push('  <text x="' + (barBlockX - 2) + '" y="62" font-family="' + font + '" font-size="5.5" fill="#4a5e80">Scan bars (' + bars + "):</text>");
-  var bx = width - 28 - bars * 11;
-  for (var i = 0; i < bars; i++) {
-    L.push('  <rect x="' + bx + '" y="44" width="4" height="24" rx="1" fill="#111827"/>');
-    bx += 11;
-  }
+  var stepTwoX = width / 2 + 40;
+  L.push('  <text x="' + stepTwoX + '" y="52" font-family="' + font + '" font-size="6" font-weight="bold" fill="#2b4976">STEP 2</text>');
+  L.push('  <text x="' + stepTwoX + '" y="62" font-family="' + font + '" font-size="5.5" fill="#4a5e80">Press play. Edison drives up through ' + bars + ' bar' + (bars > 1 ? 's' : '') + ', then explores the grid.</text>');
 
   L.push('  <rect x="' + (left - 2) + '" y="' + (top - 2) + '" width="' + (gridW + 4) + '" height="' + (gridH + 4) + '" rx="3" fill="none" stroke="#94a3b8" stroke-width="0.6" stroke-dasharray="6 3"/>');
 
@@ -459,8 +455,25 @@ function buildScenarioSvg(squareTypes, scenario) {
     L.push('  <text x="' + (left - 8) + '" y="' + ly + '" font-family="' + font + '" font-size="6" fill="#64748b" text-anchor="middle" font-weight="bold">' + ri2 + "</text>");
   }
 
+  // Physical barcode strip + start circle below the grid
+  var stripTop = top + gridH + 4;
+  var startCol = Number(scenario.start.col);
+  var stripCx = left + startCol * cell + Math.floor(cell / 2);
+  var barW = Math.max(cell - 20, 60);
+  var barY = stripTop + 8;
+  for (var bi = 0; bi < bars; bi++) {
+    var by = barY + bi * 14;
+    L.push('  <rect x="' + (stripCx - barW / 2) + '" y="' + by + '" width="' + barW + '" height="5" rx="1" fill="#111827"/>');
+  }
+  var circleY = barY + bars * 14 + 18;
+  L.push('  <circle cx="' + stripCx + '" cy="' + circleY + '" r="20" fill="#22c55e" fill-opacity="0.25" stroke="#15803d" stroke-width="1"/>');
+  L.push('  <circle cx="' + stripCx + '" cy="' + circleY + '" r="12" fill="#22c55e" stroke="#15803d" stroke-width="1.2"/>');
+  L.push('  <circle cx="' + stripCx + '" cy="' + circleY + '" r="4" fill="#f0fdf4" stroke="#15803d" stroke-width="0.6"/>');
+  L.push('  <text x="' + stripCx + '" y="' + (circleY + 30) + '" font-family="' + font + '" font-size="7" font-weight="bold" fill="#14573a" text-anchor="middle">START</text>');
+  L.push('  <line x1="' + stripCx + '" y1="' + circleY + '" x2="' + stripCx + '" y2="' + (circleY - 14) + '" stroke="#15803d" stroke-width="2" stroke-linecap="round" marker-end="url(#arrowhead)"/>');
+
   if (legendTypes.length > 0) {
-    var legendY = top + gridH + numW + 10;
+    var legendY = top + gridH + stripH + numW + 10;
     L.push('  <text x="' + left + '" y="' + legendY + '" font-family="' + font + '" font-size="7" font-weight="bold" fill="#334155">LEGEND</text>');
     legendTypes.forEach(function (t, idx) {
       var ly2 = legendY + 10 + idx * 14;

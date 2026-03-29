@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="660mm" height="590mm" viewBox="0 0 660 590">
+<svg xmlns="http://www.w3.org/2000/svg" width="660mm" height="670mm" viewBox="0 0 660 670">
   <title>EdisonRL Grid 1 - Desert Quest (ID: one bar)</title>
   <defs>
     <linearGradient id="desertSky" x1="0" y1="0" x2="0" y2="1">
@@ -23,7 +23,7 @@
   <!-- Instruction panel -->
   <rect x="22" y="44" width="616" height="42" rx="8" fill="#fffdf5" stroke="#c49a3a" stroke-width="1"/>
   <text x="56" y="60" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="bold" fill="#5a3d12">STEP 1</text>
-  <text x="56" y="72" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#7a5a28">Place Edison line sensor on green circle, face North.</text>
+  <text x="56" y="72" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#7a5a28">Place Edison on green start circle below the grid, facing toward the top of the page.</text>
   <circle cx="38" cy="65" r="10" fill="#22c55e" stroke="#15803d" stroke-width="0.8"/>
   <circle cx="38" cy="65" r="3.5" fill="#f0fdf4" stroke="#15803d" stroke-width="0.5"/>
   <text x="480" y="60" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="bold" fill="#5a3d12">STEP 2</text>
@@ -60,13 +60,8 @@
       <line x1="0" y1="330" x2="550" y2="330"/>
     </g>
 
-    <!-- Start cell (row 3, col 0) -->
+    <!-- Start cell highlight (row 3, col 0) -->
     <rect x="3" y="333" width="104" height="104" rx="6" fill="#cbf4db" fill-opacity="0.6" stroke="#22995d" stroke-width="1.5"/>
-    <circle cx="55" cy="385" r="20" fill="#22c55e" fill-opacity="0.25" stroke="#15803d" stroke-width="1"/>
-    <circle cx="55" cy="385" r="12" fill="#22c55e" stroke="#15803d" stroke-width="1.2"/>
-    <circle cx="55" cy="385" r="4" fill="#f0fdf4" stroke="#15803d" stroke-width="0.6"/>
-    <!-- North arrow -->
-    <line x1="55" y1="385" x2="55" y2="355" stroke="#15803d" stroke-width="2" stroke-linecap="round" marker-end="url(#startArrow)"/>
     <text x="55" y="350" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="bold" fill="#14573a" text-anchor="middle">START</text>
 
     <!-- Invalid (row 1, col 2) ? sinkhole -->
@@ -91,24 +86,31 @@
     <text x="495" y="368" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#7b5800" text-anchor="middle">GOAL</text>
   </g>
 
-  <!-- River overlay (flows through cols 3-4 of the grid, root coords x?430..560) -->
+  <!-- River overlay (flows through cols 3-4 of the grid, root coords x~430..560) -->
   <path d="M500 110 C460 190 530 260 480 340 C440 410 510 490 470 535" fill="none" stroke="#55adef" stroke-width="28" stroke-linecap="round" opacity="0.35"/>
   <path d="M500 110 C460 190 530 260 480 340 C440 410 510 490 470 535" fill="none" stroke="#9ad8ff" stroke-width="14" stroke-linecap="round" opacity="0.5"/>
 
-  <!-- Boxed legend -->
-  <rect x="22" y="554" width="400" height="28" rx="6" fill="#fffdf5" stroke="#c4a468" stroke-width="0.7"/>
-  <text x="30" y="564" font-family="Arial,Helvetica,sans-serif" font-size="6" font-weight="bold" fill="#5a3d12">LEGEND:</text>
-  <rect x="72" y="557" width="10" height="10" rx="2" fill="#fffef9" stroke="#c4a468" stroke-width="0.5"/>
-  <text x="86" y="565" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Empty</text>
-  <rect x="112" y="557" width="10" height="10" rx="2" fill="#ffe69a" stroke="#c89b1f" stroke-width="0.5"/>
-  <text x="126" y="565" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Goal</text>
-  <rect x="148" y="557" width="10" height="10" rx="2" fill="#ffb8a8" stroke="#b93e2d" stroke-width="0.5"/>
-  <text x="162" y="565" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Lava</text>
-  <rect x="186" y="557" width="10" height="10" rx="2" fill="#d9d2c6" stroke="#7e725f" stroke-width="0.5"/>
-  <text x="200" y="565" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Invalid (Pit)</text>
-  <rect x="258" y="557" width="10" height="10" rx="2" fill="#cbf4db" stroke="#22995d" stroke-width="0.5"/>
-  <text x="272" y="565" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Start</text>
-  <text x="308" y="572" font-family="Arial,Helvetica,sans-serif" font-size="5" fill="#94a3b8">Arrow = heading direction</text>
+  <!-- Physical barcode strip + start circle below grid (col 0 center = x 106) -->
+  <rect x="61" y="548" width="90" height="5" rx="1" fill="#111827"/>
+  <circle cx="106" cy="580" r="20" fill="#22c55e" fill-opacity="0.25" stroke="#15803d" stroke-width="1"/>
+  <circle cx="106" cy="580" r="12" fill="#22c55e" stroke="#15803d" stroke-width="1.2"/>
+  <circle cx="106" cy="580" r="4" fill="#f0fdf4" stroke="#15803d" stroke-width="0.6"/>
+  <line x1="106" y1="580" x2="106" y2="560" stroke="#15803d" stroke-width="2" stroke-linecap="round" marker-end="url(#startArrow)"/>
+  <text x="106" y="610" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="bold" fill="#14573a" text-anchor="middle">START</text>
 
-  <text x="638" y="580" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#94a3b8">Copyright (C) Shreyan Mitra, 2024-2026.</text>
+  <!-- Boxed legend -->
+  <rect x="22" y="624" width="400" height="28" rx="6" fill="#fffdf5" stroke="#c4a468" stroke-width="0.7"/>
+  <text x="30" y="634" font-family="Arial,Helvetica,sans-serif" font-size="6" font-weight="bold" fill="#5a3d12">LEGEND:</text>
+  <rect x="72" y="627" width="10" height="10" rx="2" fill="#fffef9" stroke="#c4a468" stroke-width="0.5"/>
+  <text x="86" y="635" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Empty</text>
+  <rect x="112" y="627" width="10" height="10" rx="2" fill="#ffe69a" stroke="#c89b1f" stroke-width="0.5"/>
+  <text x="126" y="635" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Goal</text>
+  <rect x="148" y="627" width="10" height="10" rx="2" fill="#ffb8a8" stroke="#b93e2d" stroke-width="0.5"/>
+  <text x="162" y="635" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Lava</text>
+  <rect x="186" y="627" width="10" height="10" rx="2" fill="#d9d2c6" stroke="#7e725f" stroke-width="0.5"/>
+  <text x="200" y="635" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Invalid (Pit)</text>
+  <rect x="258" y="627" width="10" height="10" rx="2" fill="#cbf4db" stroke="#22995d" stroke-width="0.5"/>
+  <text x="272" y="635" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#5a3d12">Start</text>
+
+  <text x="638" y="660" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#94a3b8">Copyright (C) Shreyan Mitra, 2024-2026.</text>
 </svg>

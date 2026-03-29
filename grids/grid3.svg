@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="660mm" height="720mm" viewBox="0 0 660 720">
+<svg xmlns="http://www.w3.org/2000/svg" width="660mm" height="810mm" viewBox="0 0 660 810">
   <title>EdisonRL Grid 3 - Arctic River Treasure (ID: three bars)</title>
   <defs>
     <linearGradient id="arcticSky" x1="0" y1="0" x2="0" y2="1">
@@ -28,14 +28,11 @@
   <!-- Instruction panel -->
   <rect x="22" y="44" width="616" height="42" rx="8" fill="#f8fffb" stroke="#3f8a71" stroke-width="1"/>
   <text x="56" y="60" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="bold" fill="#1f5b48">STEP 1</text>
-  <text x="56" y="72" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#2d6e58">Place Edison line sensor on green circle, face North.</text>
+  <text x="56" y="72" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#2d6e58">Place Edison on green start circle below the grid, facing toward the top of the page.</text>
   <circle cx="38" cy="65" r="10" fill="#22c55e" stroke="#15803d" stroke-width="0.8"/>
   <circle cx="38" cy="65" r="3.5" fill="#f0fdf4" stroke="#15803d" stroke-width="0.5"/>
-  <text x="440" y="60" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="bold" fill="#1f5b48">STEP 2</text>
-  <text x="440" y="72" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#2d6e58">Scan 3 bars:</text>
-  <rect x="530" y="52" width="4" height="24" rx="1" fill="#111827"/>
-  <rect x="546" y="52" width="4" height="24" rx="1" fill="#111827"/>
-  <rect x="562" y="52" width="4" height="24" rx="1" fill="#111827"/>
+  <text x="400" y="60" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="bold" fill="#1f5b48">STEP 2</text>
+  <text x="400" y="72" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#2d6e58">Press play. Edison drives up through 3 bars, then explores.</text>
 
   <!-- Cut guide -->
   <rect x="48" y="96" width="562" height="562" rx="4" fill="none" stroke="#94a3b8" stroke-width="0.6" stroke-dasharray="6 3"/>
@@ -69,13 +66,8 @@
       <line x1="0" y1="440" x2="550" y2="440"/>
     </g>
 
-    <!-- Start cell (row 4, col 0) -->
+    <!-- Start cell highlight (row 4, col 0) -->
     <rect x="3" y="443" width="104" height="104" rx="6" fill="#cbf4db" fill-opacity="0.6" stroke="#22995d" stroke-width="1.5"/>
-    <circle cx="55" cy="495" r="20" fill="#22c55e" fill-opacity="0.25" stroke="#15803d" stroke-width="1"/>
-    <circle cx="55" cy="495" r="12" fill="#22c55e" stroke="#15803d" stroke-width="1.2"/>
-    <circle cx="55" cy="495" r="4" fill="#f0fdf4" stroke="#15803d" stroke-width="0.6"/>
-    <line x1="55" y1="495" x2="55" y2="465" stroke="#15803d" stroke-width="2" stroke-linecap="round" marker-end="url(#startArrow)"/>
-    <text x="55" y="460" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="bold" fill="#14573a" text-anchor="middle">START</text>
 
     <!-- Goal 2 (row 1, col 2) ? secondary treasure -->
     <rect x="223" y="113" width="104" height="104" rx="6" fill="#fff0b8" stroke="#c89b1f" stroke-width="1.2"/>
