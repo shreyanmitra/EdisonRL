@@ -355,10 +355,9 @@ function buildScenarioSvg(squareTypes, scenario) {
   var cell = 110;
   var numW = 16;
   var left = 30 + numW;
-  var top = 96;
+  var top = 94;
   var gridW = cols * cell;
   var gridH = rows * cell;
-  var stripH = 80;
 
   var usedTypes = new Set();
   for (var ri = 0; ri < rows; ri++)
@@ -368,7 +367,7 @@ function buildScenarioSvg(squareTypes, scenario) {
   var legendH = Math.max(0, legendTypes.length * 14 + 20);
 
   var width = Math.max(420, left + gridW + 30);
-  var height = Math.max(320, top + gridH + stripH + numW + 14 + legendH + 30);
+  var height = Math.max(320, top + gridH + numW + 14 + legendH + 30);
 
   var colors = typeColorMap(squareTypes);
   var typeNames = new Map(squareTypes.map(function (t) { return [Number(t.id), String(t.name)]; }));
@@ -390,15 +389,26 @@ function buildScenarioSvg(squareTypes, scenario) {
   L.push('  <text x="14" y="18" font-family="' + font + '" font-size="12" font-weight="bold" fill="#1a2e50">' + escXml(name) + "</text>");
   L.push('  <text x="14" y="30" font-family="' + font + '" font-size="6.5" fill="#4a5e80">Print at 100% scale. Each cell = 110 mm. ID bars: ' + bars + ".</text>");
 
-  L.push('  <rect x="14" y="38" width="' + (width - 28) + '" height="38" rx="6" fill="#ffffff" stroke="#6b8cc4" stroke-width="0.7"/>');
-  L.push('  <text x="52" y="52" font-family="' + font + '" font-size="6" font-weight="bold" fill="#2b4976">STEP 1</text>');
-  L.push('  <text x="52" y="62" font-family="' + font + '" font-size="5.5" fill="#4a5e80">Place Edison on the green start circle below the grid, facing toward the top of the page.</text>');
-  L.push('  <circle cx="32" cy="57" r="10" fill="#22c55e" stroke="#15803d" stroke-width="0.8"/>');
-  L.push('  <circle cx="32" cy="57" r="3.5" fill="#f0fdf4" stroke="#15803d" stroke-width="0.5"/>');
+  L.push('  <rect x="14" y="38" width="' + (width - 28) + '" height="52" rx="6" fill="#ffffff" stroke="#6b8cc4" stroke-width="0.7"/>');
+  L.push('  <text x="22" y="50" font-family="' + font + '" font-size="6" font-weight="bold" fill="#2b4976">STEP 1</text>');
+  L.push('  <text x="58" y="50" font-family="' + font + '" font-size="5.5" fill="#4a5e80">Put Edison on the green circle at right. Press play.</text>');
+  L.push('  <text x="22" y="60" font-family="' + font + '" font-size="6" font-weight="bold" fill="#2b4976">STEP 2</text>');
+  L.push('  <text x="58" y="60" font-family="' + font + '" font-size="5.5" fill="#4a5e80">After the melody, move to green START on the grid.</text>');
+  L.push('  <text x="22" y="70" font-family="' + font + '" font-size="5.5" fill="#4a5e80">Face toward the top of the page. Press round button or clap.</text>');
 
-  var stepTwoX = width / 2 + 40;
-  L.push('  <text x="' + stepTwoX + '" y="52" font-family="' + font + '" font-size="6" font-weight="bold" fill="#2b4976">STEP 2</text>');
-  L.push('  <text x="' + stepTwoX + '" y="62" font-family="' + font + '" font-size="5.5" fill="#4a5e80">Press play. Edison drives up through ' + bars + ' bar' + (bars > 1 ? 's' : '') + ', then explores the grid.</text>');
+  var scanMidY = width < 480 ? 55 : 58;
+  var padCx = width - 28 - bars * 11 - 22;
+  var scanLabelX = Math.min(Math.max(240, padCx - 115), padCx - 75);
+  L.push('  <text x="' + scanLabelX + '" y="' + scanMidY + '" font-family="' + font + '" font-size="5" fill="#4a5e80" dominant-baseline="middle">Scan row</text>');
+  L.push('  <circle cx="' + padCx + '" cy="' + scanMidY + '" r="6" fill="#22c55e" stroke="#15803d" stroke-width="0.7"/>');
+  L.push('  <circle cx="' + padCx + '" cy="' + scanMidY + '" r="2.5" fill="#f0fdf4" stroke="#15803d" stroke-width="0.4"/>');
+  var barLeft = width - 28 - bars * 11;
+  var bx = barLeft;
+  for (var i = 0; i < bars; i++) {
+    L.push('  <rect x="' + bx + '" y="' + (scanMidY - 6) + '" width="4" height="12" rx="1" fill="#111827"/>');
+    bx += 11;
+  }
+  L.push('  <text x="' + (barLeft + bars * 11 + 4) + '" y="' + scanMidY + '" font-family="' + font + '" font-size="4.5" fill="#4a5e80" dominant-baseline="middle">' + bars + " bar" + (bars > 1 ? "s" : "") + "</text>");
 
   L.push('  <rect x="' + (left - 2) + '" y="' + (top - 2) + '" width="' + (gridW + 4) + '" height="' + (gridH + 4) + '" rx="3" fill="none" stroke="#94a3b8" stroke-width="0.6" stroke-dasharray="6 3"/>');
 
@@ -435,14 +445,14 @@ function buildScenarioSvg(squareTypes, scenario) {
 
   var arrowDx = [0, 1, 0, -1];
   var arrowDy = [-1, 0, 1, 0];
-  var ax = cx + arrowDx[sh] * 28;
-  var ay = cy + arrowDy[sh] * 28;
-  L.push('    <line x1="' + cx + '" y1="' + cy + '" x2="' + ax + '" y2="' + ay + '" stroke="#15803d" stroke-width="2" stroke-linecap="round" marker-end="url(#arrowhead)"/>');
+  var ax = cx + arrowDx[sh] * 24;
+  var ay = cy + arrowDy[sh] * 24;
+  L.push('    <line x1="' + cx + '" y1="' + cy + '" x2="' + ax + '" y2="' + ay + '" stroke="#9cc5ae" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 4" marker-end="url(#arrowheadMuted)"/>');
   L.push("  </g>");
 
   L.push("  <defs>");
-  L.push('    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">');
-  L.push('      <path d="M0,0 L8,3 L0,6 Z" fill="#15803d"/>');
+  L.push('    <marker id="arrowheadMuted" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto" markerUnits="strokeWidth">');
+  L.push('      <path d="M0,0 L7,2.5 L0,5 Z" fill="#8fbc9c"/>');
   L.push("    </marker>");
   L.push("  </defs>");
 
@@ -455,31 +465,14 @@ function buildScenarioSvg(squareTypes, scenario) {
     L.push('  <text x="' + (left - 8) + '" y="' + ly + '" font-family="' + font + '" font-size="6" fill="#64748b" text-anchor="middle" font-weight="bold">' + ri2 + "</text>");
   }
 
-  // Physical barcode strip + start circle below the grid
-  var stripTop = top + gridH + 4;
-  var startCol = Number(scenario.start.col);
-  var stripCx = left + startCol * cell + Math.floor(cell / 2);
-  var barW = Math.max(cell - 20, 60);
-  var barY = stripTop + 8;
-  for (var bi = 0; bi < bars; bi++) {
-    var by = barY + bi * 14;
-    L.push('  <rect x="' + (stripCx - barW / 2) + '" y="' + by + '" width="' + barW + '" height="5" rx="1" fill="#111827"/>');
-  }
-  var circleY = barY + bars * 14 + 18;
-  L.push('  <circle cx="' + stripCx + '" cy="' + circleY + '" r="20" fill="#22c55e" fill-opacity="0.25" stroke="#15803d" stroke-width="1"/>');
-  L.push('  <circle cx="' + stripCx + '" cy="' + circleY + '" r="12" fill="#22c55e" stroke="#15803d" stroke-width="1.2"/>');
-  L.push('  <circle cx="' + stripCx + '" cy="' + circleY + '" r="4" fill="#f0fdf4" stroke="#15803d" stroke-width="0.6"/>');
-  L.push('  <text x="' + stripCx + '" y="' + (circleY + 30) + '" font-family="' + font + '" font-size="7" font-weight="bold" fill="#14573a" text-anchor="middle">START</text>');
-  L.push('  <line x1="' + stripCx + '" y1="' + circleY + '" x2="' + stripCx + '" y2="' + (circleY - 14) + '" stroke="#15803d" stroke-width="2" stroke-linecap="round" marker-end="url(#arrowhead)"/>');
-
   if (legendTypes.length > 0) {
-    var legendY = top + gridH + stripH + numW + 10;
-    L.push('  <text x="' + left + '" y="' + legendY + '" font-family="' + font + '" font-size="7" font-weight="bold" fill="#334155">LEGEND</text>');
+    var legendY = top + gridH + numW + 10;
+    L.push('  <text x="' + left + '" y="' + (legendY + 8) + '" font-family="' + font + '" font-size="7" font-weight="bold" fill="#334155" dominant-baseline="middle">LEGEND</text>');
     legendTypes.forEach(function (t, idx) {
-      var ly2 = legendY + 10 + idx * 14;
+      var rowCy = legendY + 24 + idx * 16;
       var lc = colors.get(Number(t.id)) || "#ffffff";
-      L.push('  <rect x="' + left + '" y="' + (ly2 - 7) + '" width="12" height="12" rx="3" fill="' + lc + '" stroke="#94a3b8" stroke-width="0.5"/>');
-      L.push('  <text x="' + (left + 17) + '" y="' + (ly2 + 3) + '" font-family="' + font + '" font-size="6.5" fill="#334155">' + escXml(t.name) + " (ID " + t.id + ", reward " + t.reward_on_enter + (t.terminal ? ", terminal" : "") + (t.blocked ? ", blocked" : "") + ")</text>");
+      L.push('  <rect x="' + left + '" y="' + (rowCy - 6) + '" width="12" height="12" rx="3" fill="' + lc + '" stroke="#94a3b8" stroke-width="0.5"/>');
+      L.push('  <text x="' + (left + 17) + '" y="' + rowCy + '" font-family="' + font + '" font-size="6.5" fill="#334155" dominant-baseline="middle">' + escXml(t.name) + " (ID " + t.id + ", reward " + t.reward_on_enter + (t.terminal ? ", terminal" : "") + (t.blocked ? ", blocked" : "") + ")</text>");
     });
   }
 

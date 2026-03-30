@@ -41,13 +41,33 @@ for the robot — no installs, no command line.
 ### 4. Print the grid map
 
 Download the SVG map from the builder (**Selected SVG** or **All SVGs**) and
-print it.
+print it. The ready-made desert / forest / arctic maps in the `grids/` folder
+are large-format SVGs (for example 450–660 mm wide); use poster or tiled
+printing if your printer cannot output them in one sheet.
+
+#### How to read the instruction box on the map
+
+Each printable map has a **tall instruction panel** at the top:
+
+- **STEP 1 and STEP 2** are written as plain text on the **upper lines** of
+  that panel.
+- The **scan row** is the **bottom** part of the same panel: a small green
+  circle (line-up point for Edison’s sensor) plus the vertical **black ID
+  bars**. Nothing should sit on top of the step text — if you see overlap,
+  you are using an old file; download or export the SVG again from the latest
+  [web builder](https://shreyanmitra.github.io/EdisonRL/web-builder/) or pull
+  the current `grids/*.svg` from this repository.
+
+Place Edison on the green circle in that scan row, facing along the strip so
+it can drive forward over the black bars (left-to-right as printed). After the
+robot finishes scanning and plays its melody, move it to the large **START**
+circle on the main grid, facing the **top of the page**.
 
 #### Printing tips
 
-- **Paper size:** The generated SVGs are sized for A3 paper (420 × 297 mm).
-  If you only have A4, use your printer's "Poster" or "Tiled" mode to print
-  across two sheets and tape them together.
+- **Paper size:** Web-generated maps scale with your scenario; large hand-drawn
+  grids may need A3, poster mode, or multiple tiles. If you only have A4, use
+  your printer's "Poster" or "Tiled" mode and tape sheets together.
 - **Print at 100% scale** — do not use "Fit to page". Each grid cell must
   physically measure the **Cell Size** value (default 11 cm) for the robot's
   movements to line up.
@@ -57,24 +77,26 @@ print it.
   (the **Calibration Strip** button). Print it at 100% and use it to verify
   that your Cell Size and Turn Degrees settings match the robot's actual
   movement. Adjust the hyperparameters and recompile if needed.
-- **Start circle:** Place Edison's round sensor module on the green start
-  circle, facing the direction shown.
-- **ID bars:** Every map includes a strip of black bars between the start
-  circle and the grid. Edison drives over these first to identify which
-  scenario to run — don't cover or cut them.
+- **Start circle:** After scanning, place Edison's round sensor module on
+  the green start circle, facing toward the **top of the page**.
+- **Scan row (green circle + ID bars):** Keep this strip clear on the printout.
+  Edison drives over the bars first to pick the scenario — don't cover or cut
+  them.
 
 ### 5. Watch it learn!
 
-Set Edison on the start circle, press the play button, and watch:
-
-1. **Barcode scan** — Edison drives over the ID-bar strip to select the
-   correct scenario.
-2. **Exploration** — the robot explores the grid using Q-learning. It plays
+1. **Barcode scan** — place Edison on the **green circle in the scan row**
+   at the bottom of the top instruction panel, press play. Edison drives over
+   the ID bars to pick the scenario, then plays a short melody.
+2. **Move to start** — pick Edison up and place it on the green START circle,
+   facing toward the **top of the page**. Press the round button **or clap**
+   to begin.
+3. **Exploration** — the robot explores the grid using Q-learning. It plays
    an ascending melody when it finds a goal and a descending melody when it
    hits lava.
-3. **Reset** — after each attempt, Edison blinks its LED and waits. Press the
+4. **Reset** — after each attempt, Edison blinks its LED and waits. Press the
    round button **or clap** to place it back on the start circle.
-4. **Deployment** — after enough training rounds, Edison plays a celebration
+5. **Deployment** — after enough training rounds, Edison plays a celebration
    and switches to its learned optimal path.
 
 ---
@@ -119,6 +141,7 @@ Defaults work well for most grids.
 | Robot overshoots / undershoots cells | Print the calibration strip and adjust **Cell Size** and **Turn Degrees**. |
 | Robot drifts during turns | Increase or decrease **Turn Degrees** by 1–2 until 90° turns are accurate. |
 | EdPy compile error | Make sure you're using the **compiled** output (not the raw `EdisonRL.py`). The grid must have ≤ 25 cells and type IDs 0–31. |
+| Instruction text overlaps the barcode on the printout | Use an up-to-date SVG: re-export from the web builder or copy `grids/grid1.svg`, `grid2.svg`, and `grid3.svg` from the repo — the layout keeps text above and the scan row separate. |
 
 ---
 

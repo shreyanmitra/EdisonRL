@@ -124,6 +124,13 @@ if si < 0:
         Ed.PlayBeep()
         Ed.TimeWait(500, Ed.TIME_MILLISECONDS)
 
+Ed.PlayMyBeep(2666)
+Ed.TimeWait(100, Ed.TIME_MILLISECONDS)
+Ed.PlayMyBeep(2000)
+Ed.TimeWait(100, Ed.TIME_MILLISECONDS)
+Ed.PlayMyBeep(1333)
+wait_reset()
+
 NR = SCENARIO_ROWS[si]
 NC = SCENARIO_COLS[si]
 
@@ -138,7 +145,8 @@ cwait = 0
 
 while True:
     if done == 1:
-        wait_reset()
+        if ep >= 0:
+            wait_reset()
         if mode == 0:
             ep = ep + 1
             if ep >= 18:

@@ -97,7 +97,7 @@ def build_svg_for_scenario(square_types: list[dict], scenario: dict) -> str:
 
     cell = 110
     left = 30
-    top = 88
+    top = 94
     grid_w = cols * cell
     grid_h = rows * cell
     width = max(420, left + grid_w + 30)
@@ -114,16 +114,25 @@ def build_svg_for_scenario(square_types: list[dict], scenario: dict) -> str:
     lines.append(f'  <text x="12" y="16" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#1f365e">{esc(name)}</text>')
     lines.append('  <text x="12" y="26" font-family="Arial,sans-serif" font-size="6" fill="#1f365e">Generated map. Print at 100 percent. Cell = 110 mm.</text>')
 
-    # ID strip with auto bars
-    lines.append(f'  <rect x="12" y="32" width="{width-24}" height="28" rx="4" fill="#ffffff" stroke="#4f72a9" stroke-width="0.8"/>')
-    lines.append('  <text x="20" y="42" font-family="Arial,sans-serif" font-size="5.2" fill="#2b4976">Place line sensor on green target, face up, then scan bars.</text>')
-    lines.append('  <circle cx="30" cy="50" r="8" fill="#2dbb70" stroke="#1b7f49" stroke-width="0.8"/>')
-    lines.append('  <circle cx="30" cy="50" r="3.2" fill="#f7fff9" stroke="#1b7f49" stroke-width="0.5"/>')
+    # Instruction panel: text above; scan pad + bars on bottom row (avoids overlap)
+    lines.append(f'  <rect x="12" y="32" width="{width-24}" height="56" rx="4" fill="#ffffff" stroke="#4f72a9" stroke-width="0.8"/>')
+    lines.append('  <text x="18" y="44" font-family="Arial,sans-serif" font-size="5.2" font-weight="bold" fill="#2b4976">STEP 1</text>')
+    lines.append('  <text x="52" y="44" font-family="Arial,sans-serif" font-size="5" fill="#2b4976">Put Edison on the green circle at right. Press play.</text>')
+    lines.append('  <text x="18" y="54" font-family="Arial,sans-serif" font-size="5.2" font-weight="bold" fill="#2b4976">STEP 2</text>')
+    lines.append('  <text x="52" y="54" font-family="Arial,sans-serif" font-size="5" fill="#2b4976">After the melody, move to green START on the grid.</text>')
+    lines.append('  <text x="18" y="64" font-family="Arial,sans-serif" font-size="5" fill="#2b4976">Face toward the top of the page. Press round button or clap.</text>')
+    scan_mid = 50 if width < 480 else 52
+    pad_cx = width - 24 - bars * 10 - 18
+    scan_lbl_x = max(18, min(pad_cx - 100, width - 24 - bars * 10 - 95))
+    lines.append(f'  <text x="{scan_lbl_x}" y="{scan_mid}" font-family="Arial,sans-serif" font-size="4.5" fill="#4a5e80" dominant-baseline="middle">Scan row</text>')
+    lines.append(f'  <circle cx="{pad_cx}" cy="{scan_mid}" r="5.5" fill="#2dbb70" stroke="#1b7f49" stroke-width="0.7"/>')
+    lines.append(f'  <circle cx="{pad_cx}" cy="{scan_mid}" r="2.4" fill="#f7fff9" stroke="#1b7f49" stroke-width="0.4"/>')
     base_x = width - 24 - 18 - bars * 10
     bx = base_x
     for _ in range(bars):
-        lines.append(f'  <rect x="{bx}" y="38" width="3" height="18" fill="#111111"/>')
+        lines.append(f'  <rect x="{bx}" y="{scan_mid - 5.5}" width="3" height="11" fill="#111111"/>')
         bx += 10
+    lines.append(f'  <text x="{base_x + bars * 10 + 3}" y="{scan_mid}" font-family="Arial,sans-serif" font-size="4.5" fill="#4a5e80" dominant-baseline="middle">{bars} bar{"s" if bars > 1 else ""}</text>')
 
     lines.append(f'  <g transform="translate({left},{top})">')
     lines.append(f'    <rect x="0" y="0" width="{grid_w}" height="{grid_h}" fill="#ffffff" stroke="#2a3e62" stroke-width="1.2"/>')
