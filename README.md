@@ -9,6 +9,8 @@ compile them into code, and watch an Edison V2 robot teach itself to navigate
 using reinforcement learning — no programming experience required.
 
 **Try it now:** [https://shreyanmitra.github.io/EdisonRL/web-builder/](https://shreyanmitra.github.io/EdisonRL/web-builder/)
+<img width="880" height="862" alt="image" src="https://github.com/user-attachments/assets/cf3f3214-a13a-4e2f-8c43-29c031cec60c" />
+
 
 ---
 
